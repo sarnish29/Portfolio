@@ -1,0 +1,250 @@
+/* =========================
+   FooterStyle.css (UPDATED)
+   ========================= */
+
+.footer {
+  background-color: #111;
+  color: #fff;
+  padding: 20px;
+  width: 100%;
+  position: fixed;         /* keeps footer fixed on larger screens */
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.footer-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  padding: 0 16px; /* small horizontal padding so content doesn't touch edges */
+  box-sizing: border-box;
+}
+
+.left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 40px;
+}
+
+.location,
+.phone,
+.email {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.social {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+}
+
+.social a {
+  color: #fff;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social a:hover {
+  color: #00d8ff;
+  transform: scale(1.1);
+}
+
+/* ==========================================================
+   MOBILE VIEW (≤ 768px)
+   - DEFAULT: footer stays FIXED (so Home & Contact show it immediately)
+   - Projects & About override below -> static & full-bleed
+   ========================================================== */
+@media screen and (max-width: 768px) {
+
+  /* Default mobile footer -> keep fixed so Home & Contact users always see it */
+  .footer {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    z-index: 1000 !important;
+    padding-top: 12px !important;
+    padding-bottom: 14px !important;
+    margin-left: 0 !important; /* ensure no left offset */
+    box-shadow: none;
+    box-sizing: border-box;
+  }
+
+  /* Projects & About pages -> make footer static & full-bleed (scrolls with page) */
+  .projects-page .footer,
+  .about-page .footer {
+    position: static !important;
+    width: 100vw !important; /* full viewport width */
+    margin-left: calc(50% - 50vw) !important; /* break out of centered parent */
+    left: 0 !important;
+    right: 0 !important;
+    bottom: auto !important;
+    z-index: 1 !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    box-shadow: none !important;
+    box-sizing: border-box;
+  }
+
+  /* Footer content layout for mobile */
+  .footer-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    padding: 6px 16px;
+    box-sizing: border-box;
+  }
+
+  .left {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .location,
+  .phone,
+  .email {
+    font-size: 0.95rem;
+    justify-content: center;
+  }
+
+  .social {
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .social a {
+    font-size: 1.4rem;
+  }
+
+  /* Projects/About: collapse likely sources of bottom space */
+  .projects-page .projects-section,
+  .projects-page .projects-wrapper,
+  .projects-page .project-list,
+  .projects-page .container,
+  .projects-page section:last-of-type,
+  .projects-page .content:last-of-type,
+  .about-page section:last-of-type,
+  .about-page .container:last-of-type,
+  .about-page .content:last-of-type,
+  .projects-page .card:last-child,
+  .projects-page .project-card:last-child,
+  .about-page .card:last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: auto !important;
+  }
+}
+
+/* ==========================================================
+   SMALL PHONES (≤ 480px)
+   Keep Home & Contact fixed, Projects/About compact
+   ========================================================== */
+@media screen and (max-width: 480px) {
+  .footer {
+    padding: 10px 8px !important;
+    padding-top: 8px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .location,
+  .phone,
+  .email {
+    font-size: 0.82rem;
+  }
+
+  /* Projects/About compact padding */
+  .projects-page .footer,
+  .about-page .footer {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+  }
+
+  /* Ensure Projects/About content spacing collapsed */
+  .projects-page .projects-section,
+  .projects-page .projects-wrapper,
+  .projects-page .project-list,
+  .projects-page .container,
+  .projects-page section:last-of-type,
+  .projects-page .content:last-of-type,
+  .about-page section:last-of-type,
+  .about-page .container:last-of-type,
+  .about-page .content:last-of-type {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+/* =========================
+   Projects bottom-gap fixes (scoped)
+   These ensure no leftover bottom gap on Projects screens.
+   They do NOT change footer behaviour for Home/Contact.
+   ========================= */
+@media screen and (max-width: 768px) {
+  .projects-page,
+  .projects-page .projects-section,
+  .projects-page .projects-wrapper,
+  .projects-page .project-list,
+  .projects-page .project-card,
+  .projects-page .card,
+  .projects-page .container,
+  .projects-page section,
+  .projects-page .content {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: auto !important; /* prevent leftover min-height creating gap */
+  }
+
+  .projects-page > *:last-child,
+  .projects-page section:last-child,
+  .projects-page .project-list > *:last-child,
+  .projects-page .projects-wrapper > *:last-child {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Make sure root/body don't add a bottom padding creating a gap */
+  html, body, #root {
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
+
+/* ======== HIDE FOOTER WHEN MENU IS OPEN (MOBILE) ======== */
+
+@media screen and (max-width: 768px) {
+  body.menu-open .footer {
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+    transition: opacity 0.25s ease;
+  }
+}
+
+/* Debug helper (optional) */
+/*
+@media screen and (max-width: 768px) {
+  .projects-page * { outline: 1px dashed rgba(255,255,255,0.08); }
+  .projects-page > *:last-child { outline: 2px solid rgba(255,0,0,0.6); }
+}
+*/
